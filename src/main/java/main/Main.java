@@ -1,11 +1,13 @@
 package main;
 
+
 import org.parse4j.Parse;
 import org.parse4j.ParseException;
 import org.parse4j.ParseObject;
-import org.parse4j.ParseUser;
+import org.parse4j.ParseQuery;
 import org.parse4j.callback.SaveCallback;
-import org.parse4j.callback.SignUpCallback;
+
+import java.util.List;
 
 /**
  * Created by deplike on 23.3.2016.
@@ -29,5 +31,22 @@ public class Main {
                 }
             }
         });
+        ParseQuery query=new ParseQuery("AIDL_V1");
+        query.whereEqualTo("text","enter text");
+        try {
+            List<ParseObject> list = query.find();
+            for (ParseObject parseObject : list) {
+                System.out.println(parseObject.get("hasFound"));
+
+            }
+
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        System.out.println("TEST");
     }
+
+
+
 }
