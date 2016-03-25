@@ -1,10 +1,8 @@
 package main;
 
 
-import org.parse4j.Parse;
-import org.parse4j.ParseException;
-import org.parse4j.ParseObject;
-import org.parse4j.ParseQuery;
+import org.parse4j.*;
+
 import org.parse4j.callback.SaveCallback;
 
 import java.util.List;
@@ -16,7 +14,7 @@ public class Main {
     private static String APP_ID = "DEPLIKE";
     private static String APP_REST_API_ID = "DEPLIKE";
     public static void main(String[] args) {
-        Parse.initializeAsRoot(APP_ID, APP_REST_API_ID);
+/*        ParseRemote.initialize(APP_ID, APP_REST_API_ID);
         ParseObject po = new ParseObject("parse4j");
         po.put("anil", "mercan");
         po.saveInBackground(new SaveCallback() {
@@ -43,9 +41,35 @@ public class Main {
 
         } catch (ParseException e) {
             e.printStackTrace();
+        }*/
+
+        Parse.initialize("5W8UobctUfbJrCSqUjuoor3fWW5JrHAFSWn8u2M8","QVckpT3cb2bNLrh1gSka6jta0QXIAswUkJPNbk2P");
+
+
+        ParseUser pu=new ParseUser();
+        pu.setUsername("anil");
+        pu.setPassword("mercan");
+        try {
+            pu.signUp();
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
-        System.out.println("TEST");
+        ParseQuery queryRemote=new ParseQuery("TestObject");
+        queryRemote.whereEqualTo("foo","bar");
+        try {
+            List<ParseObject> list = queryRemote.find();
+            for (ParseObject parseObject : list) {
+                System.out.println(parseObject.get("foo"));
+
+            }
+
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
+
+
 
 
 
