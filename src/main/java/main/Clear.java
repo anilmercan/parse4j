@@ -11,7 +11,7 @@ import java.util.List;
 public class Clear {
     private static String LOCAL_APP_ID = "DEPLIKE";
     private static String LOCAL_APP_REST_API_ID = "DEPLIKE";
-    private static String[] classArray= new String[]{"Session"};
+    private static String[] classArray= new String[]{"_Installation","_User","Event","Session"};
     /*private static String[] classArray= new String[]{"_Session"};*/
 
     public static void main(String[] args){
