@@ -63,12 +63,15 @@ public class ParseUser extends ParseObject {
 		return sessionToken;
 
 	}
-
 	public static ParseUser logIn(String username, String password) throws ParseException {
 		ParseUser pu = new ParseUser();
 		pu.setUsername(username);
 		pu.setPassword(password);
 		return pu;
+
+
+
+
 	}
 
 	public boolean isAuthenticated() {

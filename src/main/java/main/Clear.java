@@ -11,7 +11,7 @@ import java.util.List;
 public class Clear {
     private static String LOCAL_APP_ID = "DEPLIKE";
     private static String LOCAL_APP_REST_API_ID = "DEPLIKE";
-    private static String[] classArray= new String[]{"_Installation","_User","Event","Session"};
+    private static String[] classArray= new String[]{"Session"};
     /*private static String[] classArray= new String[]{"_Session"};*/
 
     public static void main(String[] args){
@@ -22,20 +22,21 @@ public class Clear {
         for (String clazz : classArray) {
 
             int skipSize=0;
-            while (true){
-                local.parse4j.ParseQuery localQuery=new  local.parse4j.ParseQuery(clazz);
+            while (true) {
+                local.parse4j.ParseQuery localQuery = new local.parse4j.ParseQuery(clazz);
 
                 localQuery.skip(skipSize);
                 List<ParseObject> listOfClass = localQuery.find();
-
-                for (ParseObject listOfClas : listOfClass) {
-                    listOfClas.delete();
+                if (listOfClass != null) {
+                    for (ParseObject listOfClas : listOfClass) {
+                        listOfClas.delete();
+                    }
+                    if (listOfClass.size() < 100) {
+                        break;
+                    }
+                    skipSize = skipSize + 100;
                 }
-                if(listOfClass.size()<100){
-                    break;
-                }
-                skipSize=skipSize+100;
-             }
+            }
 
             }
 
