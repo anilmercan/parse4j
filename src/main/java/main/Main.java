@@ -23,6 +23,8 @@ public class Main {
     private static String REMOTE_APP_ID = "CUHWQ34fhVERCkAhQZdtZ5QOMrT6FQ6uGyY2TG3j";
     private static String REMOTE_APP_MASTER_KEY= "WUuQks3UM2YRG2sSzH1lSvC3kiNC3M909UcXw2zV";
     private static String REMOTE_APP_REST_API_KEY= "eXdfGXtkds4T7xl8MreE7s55flmeVlX9DOUFr9kN";
+
+
     private static String[] classArray= new String[]{"_Installation","_User","Event","Session"};
 
 
@@ -41,6 +43,7 @@ public class Main {
 
             for (String clazz : classArray) {
                 remote.parse4j.ParseQuery queryRemote=new  remote.parse4j.ParseQuery(clazz);
+
                 queryRemote.limit(100);
                 Integer startOfQuery=0;
                 List<local.parse4j.ParseObject> localList=new ArrayList<ParseObject>();
@@ -59,6 +62,10 @@ public class Main {
 
 
                         Map<String, Object> data = parseObject.getData();
+                        data.put("crated_at",parseObject.getCreatedAt());
+                        data.put("updated_at",parseObject.getUpdatedAt());
+
+
                         Set<String> keySey = data.keySet();
                         for (String key : keySey) {
                             System.out.println("Key -> " + key + "  Data -> " + data.get(key));
